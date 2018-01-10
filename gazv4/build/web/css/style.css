@@ -1,0 +1,109 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2018-01-07, 22:34:31
+    Author     : Sebastian
+*/
+
+  .form-signin {   
+    max-width: 330px;
+    border-radius: 5px;
+    padding: 30px;
+    /*margin: 50px auto;*/
+    background: #4fbfe9;
+  }
+
+  .form-signin .form-signin-heading,
+  .form-signin .checkbox {
+    margin-bottom: 10px;
+  }
+
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+
+  .form-signin input[type="email"] {
+    margin-bottom: 0px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .bg-orange{
+    background: #febd65;
+  }
+
+  .bg-blue{
+    background: #273246;
+  }
+
+  .logo{
+    height: 60px;
+    width: 70px;
+    z-index: 1;  
+    background: url("../img/logo.png") no-repeat;
+    background-size:100% 100%;
+  } 
+
+  .nav-link{
+    height: 60px;
+    padding: 20px;    
+    text-align: center;
+    vertical-align: middle;
+  }
+
+ .nav-link:hover{
+    background: #f1b25f;
+  }
+ 
+  footer{
+    height: 300px;
+  }
+
+  .seg-darkRed{
+    height: 100%;
+    width: 100%;
+    background: #8B0000;    
+  }  
+
+   .seg-MediumVioletRed{
+    height: 200px;
+    width: 100%;
+    background: #C71585;    
+  }
+
+  .seg-Orange{
+    height: 100%;
+    width: 100%;
+    background: #FFA500;
+  }
+
+  .margin-nav{
+    margin-top: 97px;
+  }
+
+  .slider-h{
+    max-height: 350px;
+  }
+  
+ 
