@@ -38,13 +38,11 @@ public class Logowania extends HttpServlet {
             user.getHaslo().equals(password);
             em.close();
 
-            if (user.getHaslo().equals(password)) {
-
+            if (user.getHaslo().equals(password) && user.getPotwierdz() == true) {
                 return user.getIdUzytkownik();
             } else {
                 return 0;
             }
-
         } catch (Exception e) {
             return 0;
         }

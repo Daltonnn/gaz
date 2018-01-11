@@ -44,8 +44,15 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Onas</a>
                     </li>
-                </ul>               
+                </ul> 
+                <% if((session.getAttribute("IdUzytkownik") == null) || (session.getAttribute("IdUzytkownik") == "0")){ %>
                 <button type="button" class="btn btn-primary " data-toggle="modal" data-target=".bd-example-modal-sm">Zaloguj</button>
+                <% }else{%>
+                <a href="login.jsp" class="btn btn-primary mr-2">Profil</a>
+                <form action="LogOut" method="post">
+                <button type="submit" formaction="LogOut" class="btn btn-primary"  data-target=".bd-example-modal-sm">Wyloguj</button>
+                </form>
+                <%}%>
 
             </div>
         </div>
@@ -58,8 +65,8 @@
                 <div class="modal-content">
                     <form action="Logowania" method="post" class="form-signin">
                         <h2 class="form-signin-heading">Logowanie</h2>                       
-                        <input id="inputEmail" name="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" type="email">                       
-                        <input id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required="" type="password">
+                        <input id="inputEmail" name="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" type="email" required>                       
+                        <input id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required="" type="password" required>
                         <div class="checkbox">
                             <label>
                                 <input value="remember-me" type="checkbox"> Pamietaj hasło
