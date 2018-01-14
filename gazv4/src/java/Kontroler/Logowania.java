@@ -6,7 +6,10 @@
 package Kontroler;
 
 import Model.UzytkownikModel;
+import com.sun.org.apache.xerces.internal.xs.LSInputList;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -24,7 +27,7 @@ import javax.servlet.http.HttpSession;
  * @author Sebastian
  */
 @WebServlet("/Logowania")
-public class Logowania extends HttpServlet {
+public class Logowania extends HttpServlet  implements java.io.Serializable {
 
     private static final String PERSISTENCE_UNIT_NAME = "gazv4PU";
 
@@ -49,6 +52,34 @@ public class Logowania extends HttpServlet {
 
     }
 
+    public ArrayList getUsers() {
+        ArrayList<UzytkownikModel> usersArrayList = new ArrayList();
+        
+        try{
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManager em = factory.createEntityManager();
+        
+        Query q = em.createQuery("SELECT u FROM UzytkownikModel u");
+        List users = (List) q.getResultList();
+        
+        for (int i = 0; i < users.size(); i++) {
+            UzytkownikModel user = (UzytkownikModel) users.get(i);
+            if (user.getTyp().getIdTyp() != 3) {
+                usersArrayList.add(user);
+                //String firstName = user.getImie();
+                //String lastName = user.getNazwisko();
+                //System.out.println(firstName + " " + lastName + "");
+            }
+        }
+        em.close();
+        return usersArrayList;
+        }catch (Exception e){
+            System.err.println(e);
+            return usersArrayList;
+        }
+
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
@@ -58,10 +89,12 @@ public class Logowania extends HttpServlet {
         String password = request.getParameter("inputPassword");
 
         Logowania login = new Logowania();
+        HttpSession session = request.getSession();
+        request.setAttribute("getUsers", login.getUsers());
+        session.setAttribute("getUsers", login.getUsers());
 
-        if (login.checkUser(email, password) > 0) {
-            HttpSession session = request.getSession();
-            session.setAttribute("IdUzytkownik", login.checkUser(email, password));
+        if (login.checkUser(email, password) > 0) {            
+            session.setAttribute("IdUzytkownik", login.checkUser(email, password));            
             response.sendRedirect("login.jsp");
         } else {
             response.sendRedirect("index.jsp");
@@ -69,13 +102,13 @@ public class Logowania extends HttpServlet {
     }
 
     public static void main(String[] args) {
-        String login = "admin@admin.com";
-        String haslo = "admin";
-        Logowania logowania = new Logowania();
-        if (logowania.checkUser(login, haslo) > 0) {
-            System.out.println("Zalogowany");
-        } else {
-            System.out.println("Nie zalogowany");
+        Logowania log = new Logowania();
+       
+        
+        List<UzytkownikModel> cos = (List) log.getUsers();
+        for (UzytkownikModel user : cos) {
+            System.out.println(user.getImie());
+            
         }
 
     }
