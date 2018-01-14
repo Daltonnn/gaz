@@ -6,12 +6,17 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
- <%
-            if ( (session.getAttribute("IdUzytkownik") == null) || (session.getAttribute("IdUzytkownik") == "0")) {
-                response.sendRedirect("index.jsp");
-               
-            }else{
-        %>
+<%
+    if ((session.getAttribute("IdUzytkownik") == null) || (session.getAttribute("IdUzytkownik") == "0")) {
+        response.sendRedirect("index.jsp");
+
+    } else {
+%>
 <%@include file="head.jsp" %>
+<<div class="row margin-nav">
+    <div class="col-sm"> 
+        <a href="showusers.jsp">showuser</a>
+    </div>
+</div>
 <%@include file="footer.jsp" %>
 <%}%>
