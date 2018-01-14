@@ -112,7 +112,7 @@ public class UzytkownikModel implements Serializable {
         this.miasto = miasto;
         this.kodPoczt = kodPoczt;
         this.email = email;
-        this.haslo = haslo;
+        this.haslo = haslo;       
     }
 
     public Integer getIdUzytkownik() {

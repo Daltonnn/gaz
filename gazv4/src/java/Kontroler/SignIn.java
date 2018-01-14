@@ -5,11 +5,13 @@
  */
 package Kontroler;
 
+import Model.TypModel;
 import Model.UzytkownikModel;
 import java.io.IOException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -58,9 +60,12 @@ public class SignIn extends HttpServlet {
         em.getTransaction().begin();
         UzytkownikModel user = new UzytkownikModel(imie, nazwisko, nrBud, ulica, miasto, kodPoczt, email, haslo);
         em.persist(user);
-        
-        
+        Query q = em.createQuery("SELECT t FROM TypModel t WHERE t.idTyp ='"+1+"'");
+        TypModel typ =(TypModel) q.getSingleResult();
+        user.setTyp(typ);        
         em.getTransaction().commit();
+        
+        
         em.close();
         resp.sendRedirect("potwierdzenie.jsp");
         }catch(Exception e){

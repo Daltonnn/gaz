@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
  * @author Sebastian
  */
 @WebServlet("/Logowania")
-public class Logowania extends HttpServlet  implements java.io.Serializable {
+public class Logowania extends HttpServlet implements java.io.Serializable {
 
     private static final String PERSISTENCE_UNIT_NAME = "gazv4PU";
 
@@ -49,36 +49,35 @@ public class Logowania extends HttpServlet  implements java.io.Serializable {
         } catch (Exception e) {
             return 0;
         }
-
     }
 
-    public ArrayList getUsers() {
+    public List<UzytkownikModel> getUsers() {
         ArrayList<UzytkownikModel> usersArrayList = new ArrayList();
-        
-        try{
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        EntityManager em = factory.createEntityManager();
-        
-        Query q = em.createQuery("SELECT u FROM UzytkownikModel u");
-        List users = (List) q.getResultList();
-        
-        for (int i = 0; i < users.size(); i++) {
-            UzytkownikModel user = (UzytkownikModel) users.get(i);
-            if (user.getTyp().getIdTyp() != 3) {
-                usersArrayList.add(user);
-                //String firstName = user.getImie();
-                //String lastName = user.getNazwisko();
-                //System.out.println(firstName + " " + lastName + "");
-            }
-        }
-        em.close();
-        return usersArrayList;
-        }catch (Exception e){
-            System.err.println(e);
-            return usersArrayList;
-        }
 
+        try {
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+            EntityManager em = factory.createEntityManager();
+
+            Query q = em.createQuery("SELECT u FROM UzytkownikModel u");
+            List users = (List) q.getResultList();
+            for (int i = 0; i < users.size(); i++) {
+                UzytkownikModel user = (UzytkownikModel) users.get(i);
+                if (user.getTyp().getIdTyp() != 3) {
+                    usersArrayList.add(user);                     
+                }
+            }            
+            List<UzytkownikModel> usersList = (List) usersArrayList;
+            em.close();
+            return usersList;
+        } catch (Exception e) {
+            System.err.println(e);
+            usersArrayList.clear();
+            List<UzytkownikModel> usersList = (List) usersArrayList;
+            return usersList;
+        }
     }
+    
+    
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -90,11 +89,9 @@ public class Logowania extends HttpServlet  implements java.io.Serializable {
 
         Logowania login = new Logowania();
         HttpSession session = request.getSession();
-        request.setAttribute("getUsers", login.getUsers());
-        session.setAttribute("getUsers", login.getUsers());
 
-        if (login.checkUser(email, password) > 0) {            
-            session.setAttribute("IdUzytkownik", login.checkUser(email, password));            
+        if (login.checkUser(email, password) > 0) {
+            session.setAttribute("IdUzytkownik", login.checkUser(email, password));
             response.sendRedirect("login.jsp");
         } else {
             response.sendRedirect("index.jsp");
@@ -103,12 +100,11 @@ public class Logowania extends HttpServlet  implements java.io.Serializable {
 
     public static void main(String[] args) {
         Logowania log = new Logowania();
-       
-        
-        List<UzytkownikModel> cos = (List) log.getUsers();
-        for (UzytkownikModel user : cos) {
+
+      
+        for (UzytkownikModel user : log.getUsers()) {
             System.out.println(user.getImie());
-            
+
         }
 
     }
