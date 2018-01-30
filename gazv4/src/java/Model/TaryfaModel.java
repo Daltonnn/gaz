@@ -61,6 +61,12 @@ public class TaryfaModel implements Serializable {
     public TaryfaModel(Integer idTaryfa) {
         this.idTaryfa = idTaryfa;
     }
+    
+    public TaryfaModel(String nazwa, BigDecimal cenaJed, BigDecimal cenaLicz) {       
+        this.nazwa = nazwa;
+        this.cenaJed = cenaJed;
+        this.cenaLicz = cenaLicz;
+    }
 
     public TaryfaModel(Integer idTaryfa, String nazwa, BigDecimal cenaJed, BigDecimal cenaLicz) {
         this.idTaryfa = idTaryfa;
@@ -134,5 +140,5 @@ public class TaryfaModel implements Serializable {
     public String toString() {
         return "Model.TaryfaModel[ idTaryfa=" + idTaryfa + " ]";
     }
-    
+        
 }

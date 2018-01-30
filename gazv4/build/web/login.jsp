@@ -16,6 +16,10 @@
 <<div class="row margin-nav">
     <div class="col-sm"> 
         <a href="showusers.jsp">showuser</a>
+        <br/>
+        <a href="addtariff.jsp">dodaj taryfe</a>
+        <br />
+        <a href="showtariff.jsp">showtariff</a>
     </div>
 </div>
 <%@include file="footer.jsp" %>

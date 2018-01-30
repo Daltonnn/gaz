@@ -13,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Blad</h1>
+        <h1>Blad</h1>        
+      Exception is: <%= exception %> 
     </body>
 </html>
