@@ -61,11 +61,15 @@
                                 out.print("checked");
                             }%> >
                         <jsp:useBean id="taryfa" class="Kontroler.AddTariff" scope="request">
-                            <select name="taryfa" id="inputState" class="form-control">
+                            <select name="taryfa" id="inputState" class="form-control">                                
                                 <option value="null" selected>Wybierz</option>
-                                <% for (TaryfaModel teryfy : taryfa.getTaryfa()) { %>                               
-                                <option value="<%out.print(teryfy.getIdTaryfa()); %>"><%out.print(teryfy.getNazwa()); %></option>
-                                <% } %>
+                                <% for (TaryfaModel teryfy : taryfa.getTaryfa()) {
+                                        if (user.getUser(cos).getTaryfa() != null && teryfy.getIdTaryfa() == user.getUser(cos).getTaryfa().getIdTaryfa()) { %>                                  
+                                            <option value="<%out.print(teryfy.getIdTaryfa()); %>" selected><%out.print(teryfy.getNazwa()); %></option>
+                                <%      } else { %>
+                                            <option value="<%out.print(teryfy.getIdTaryfa()); %>"><%out.print(teryfy.getNazwa()); %></option>
+                                <%      }
+                                   } %>
                             </select>
                         </jsp:useBean>
                     </div>

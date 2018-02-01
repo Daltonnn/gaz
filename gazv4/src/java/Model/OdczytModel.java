@@ -66,6 +66,12 @@ public class OdczytModel implements Serializable {
     public OdczytModel(Integer idOdczyt) {
         this.idOdczyt = idOdczyt;
     }
+    
+     public OdczytModel( Date dataOd, Date dataDo, BigDecimal wartosc) {
+        this.dataOd = dataOd;
+        this.dataDo = dataDo;
+        this.wartosc = wartosc;
+    }
 
     public OdczytModel(Integer idOdczyt, Date dataOd, Date dataDo, BigDecimal wartosc) {
         this.idOdczyt = idOdczyt;

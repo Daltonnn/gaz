@@ -20,6 +20,8 @@
         <a href="addtariff.jsp">dodaj taryfe</a>
         <br />
         <a href="showtariff.jsp">showtariff</a>
+         <br />
+        <a href="addreading.jsp">dodaj odczyt</a>
     </div>
 </div>
 <%@include file="footer.jsp" %>

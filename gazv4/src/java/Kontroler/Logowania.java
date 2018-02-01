@@ -78,6 +78,58 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
     }
     
     
+     public List<UzytkownikModel> getCustomer() {
+        ArrayList<UzytkownikModel> usersArrayList = new ArrayList();
+
+        try {
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+            EntityManager em = factory.createEntityManager();
+
+            Query q = em.createQuery("SELECT u FROM UzytkownikModel u");
+            List users = (List) q.getResultList();
+            for (int i = 0; i < users.size(); i++) {
+                UzytkownikModel user = (UzytkownikModel) users.get(i);
+                if (user.getTyp().getIdTyp() != 3 && user.getTyp().getIdTyp() != 2) {
+                    usersArrayList.add(user);                     
+                }
+            }            
+            List<UzytkownikModel> usersList = (List) usersArrayList;
+            em.close();
+            return usersList;
+        } catch (Exception e) {
+            System.err.println(e);
+            usersArrayList.clear();
+            List<UzytkownikModel> usersList = (List) usersArrayList;
+            return usersList;
+        }
+    }
+     
+     public List<UzytkownikModel> getWorker() {
+        ArrayList<UzytkownikModel> usersArrayList = new ArrayList();
+
+        try {
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+            EntityManager em = factory.createEntityManager();
+
+            Query q = em.createQuery("SELECT u FROM UzytkownikModel u");
+            List users = (List) q.getResultList();
+            for (int i = 0; i < users.size(); i++) {
+                UzytkownikModel user = (UzytkownikModel) users.get(i);
+                if (user.getTyp().getIdTyp() != 3 && user.getTyp().getIdTyp() != 1) {
+                    usersArrayList.add(user);                     
+                }
+            }            
+            List<UzytkownikModel> usersList = (List) usersArrayList;
+            em.close();
+            return usersList;
+        } catch (Exception e) {
+            System.err.println(e);
+            usersArrayList.clear();
+            List<UzytkownikModel> usersList = (List) usersArrayList;
+            return usersList;
+        }
+    }
+    
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

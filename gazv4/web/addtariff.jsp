@@ -1,8 +1,3 @@
-<%-- 
-    Document   : addtariff
-    Created on : 2018-01-30, 17:33:13
-    Author     : Sebastian
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if ((session.getAttribute("IdUzytkownik") == null) || (session.getAttribute("IdUzytkownik") == "0")) {
