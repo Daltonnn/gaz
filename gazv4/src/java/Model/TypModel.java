@@ -51,6 +51,10 @@ public class TypModel implements Serializable {
     public TypModel(Integer idTyp) {
         this.idTyp = idTyp;
     }
+    
+    public TypModel( String nazwa) {        
+        this.nazwa = nazwa;
+    }
 
     public TypModel(Integer idTyp, String nazwa) {
         this.idTyp = idTyp;

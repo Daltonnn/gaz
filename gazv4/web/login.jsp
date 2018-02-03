@@ -16,9 +16,8 @@
 <<div class="row margin-nav">
     <div class="col-sm"> 
         <a href="showusers.jsp">showuser</a>
-        <br/>
-        <a href="addtariff.jsp">dodaj taryfe</a>
-        <br />
+        <br/>      
+        
         <a href="showtariff.jsp">showtariff</a>
          <br />
         <a href="addreading.jsp">dodaj odczyt</a>

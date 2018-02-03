@@ -1,21 +1,19 @@
-<%@page import="Model.TaryfaModel"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Model.TypModel"%>
 <%
     if ((session.getAttribute("IdUzytkownik") == null) || (session.getAttribute("IdUzytkownik") == "0")) {
         response.sendRedirect("index.jsp");
     } else {
 %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="head.jsp" %>
-
-
 <div class="row margin-nav mb-5">
     <div class="col-sm">
-        <a href="addtariff.jsp" class="btn btn-primary">Dodaj</a>
+        <a href="addtyp.jsp" class="btn btn-primary">Dodaj</a>
     </div>
 </div>
 <div class="row ">
     <div class="col-sm">
-        <jsp:useBean id="taryfa" class="Kontroler.AddTariff" scope="request">
+        <jsp:useBean id="typ" class="Kontroler.AddTyp" scope="request">
             <div class="table-responsive-sm">
                 <table class="table">
                     <thead>
@@ -28,14 +26,14 @@
                     <tbody>
                         <%
                             int i = 1;
-                            for (TaryfaModel teryfy : taryfa.getTaryfa()) {
+                            for (TypModel types : typ.getTypes()) {
                         %>
                         <tr>
                             <th scope="row"><%out.print(i); %></th>
-                            <td><%out.print(teryfy.getNazwa()); %></td>                                                       
+                            <td><%out.print(types.getNazwa()); %></td>                                                       
                             <td>
-                                <form method="post" action="ShowEditTariff" >
-                                    <input class="d-none" value="<% out.print(teryfy.getIdTaryfa()); %>" name="tariffID"/>
+                                <form method="post" action="ShowEditTyp" >
+                                    <input class="d-none" value="<% out.print(types.getIdTyp()); %>" name="tariffID"/>
                                     <button type="submit" class="btn btn-primary float-right">Wyświetl</button>                                
                                 </form>
                             </td>
@@ -49,6 +47,8 @@
         </jsp:useBean>
     </div>
 </div>
+
+
 
 <%@include file="footer.jsp" %>
 <%}%>

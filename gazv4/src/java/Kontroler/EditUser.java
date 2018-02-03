@@ -34,13 +34,13 @@ public class EditUser extends HttpServlet {
         Boolean potwierdz = Boolean.parseBoolean(req.getParameter("potwierdz"));
         
         String taryfaid = req.getParameter("taryfa");
+        int typid = Integer.parseInt(req.getParameter("typ"));
 
         try {
             EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
             EntityManager em = factory.createEntityManager();
             em.getTransaction().begin();
-            Query q = em.createQuery("SELECT u FROM UzytkownikModel u WHERE u.idUzytkownik = '" + id_uzytkownika + "'");
-            UzytkownikModel user = (UzytkownikModel) q.getSingleResult();
+            UzytkownikModel user = em.find(UzytkownikModel.class, id_uzytkownika);
             user.setImie(imie);
             user.setNazwisko(nazwisko);
             user.setEmail(email);
@@ -54,17 +54,20 @@ public class EditUser extends HttpServlet {
             user.setPotwierdz(potwierdz);
 
             if (taryfaid != null) {
-                Query qe = em.createQuery("SELECT t FROM TaryfaModel t WHERE t.idTaryfa = '" + taryfaid + "'");
-                TaryfaModel taryfa = (TaryfaModel) qe.getSingleResult();
+                int idTaryfa = Integer.parseInt(taryfaid);
+                TaryfaModel taryfa = em.find(TaryfaModel.class, idTaryfa);
                 user.setTaryfa(taryfa);
-            }            
+            } 
+            
+            TypModel typ = em.find(TypModel.class, typid);
+            user.setTyp(typ);
             
             em.persist(user);
 
             em.getTransaction().commit();
-
             em.close();
-            resp.sendRedirect("showusers.jsp");
+            
+            resp.sendRedirect("showuser.jsp");
         } catch (Exception e) {
             resp.sendRedirect("error.jsp");
             System.err.println(e);

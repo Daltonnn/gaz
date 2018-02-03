@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 public class ShowEditTariff extends HttpServlet {
     private static final String PERSISTENCE_UNIT_NAME = "gazv4PU";
     
-     public TaryfaModel getUser (String tariffId){
+     public TaryfaModel getTariff (String tariffId){
         int id = Integer.parseInt(tariffId);
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
@@ -43,7 +43,7 @@ public class ShowEditTariff extends HttpServlet {
         
         session.setAttribute("tariffID", id);       
         
-        response.sendRedirect("edittariff.jsp");   
+        response.sendRedirect("showtarif.jsp");   
     }
     
 }

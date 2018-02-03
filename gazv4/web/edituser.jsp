@@ -1,3 +1,4 @@
+<%@page import="Model.TypModel"%>
 <%@page import="Model.TaryfaModel"%>
 <%
     if ((session.getAttribute("IdUzytkownik") == null) || (session.getAttribute("IdUzytkownik") == "0")) {
@@ -59,23 +60,45 @@
 
                         <input type="checkbox" value="true"  name="potwierdz" <% if (user.getUser(cos).getPotwierdz() == Boolean.TRUE) {
                                 out.print("checked");
-                            }%> >
-                        
+                            }%> >                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
                         <jsp:useBean id="taryfa" class="Kontroler.AddTariff" scope="request">
                             <select name="taryfa" id="inputState" class="form-control">                                
                                 <option value="null" selected>Wybierz</option>
                                 <% for (TaryfaModel teryfy : taryfa.getTaryfa()) {
                                         if (user.getUser(cos).getTaryfa() != null && teryfy.getIdTaryfa() == user.getUser(cos).getTaryfa().getIdTaryfa()) { %>                                  
-                                            <option value="<%out.print(teryfy.getIdTaryfa()); %>" selected><%out.print(teryfy.getNazwa()); %></option>
+                                <option value="<%out.print(teryfy.getIdTaryfa()); %>" selected><%out.print(teryfy.getNazwa()); %></option>
                                 <%      } else { %>
-                                            <option value="<%out.print(teryfy.getIdTaryfa()); %>"><%out.print(teryfy.getNazwa()); %></option>
+                                <option value="<%out.print(teryfy.getIdTaryfa()); %>"><%out.print(teryfy.getNazwa()); %></option>
                                 <%      }
-                                   } %>
+                                    } %>
                             </select>
                         </jsp:useBean>
                     </div>
+                    <div class="col-sm">
+                        <jsp:useBean id="typ" class="Kontroler.AddTyp" scope="request">
+                            <select name="typ" id="inputState" class="form-control">                                
+                                <!--<option value="null" selected>Wybierz</option>-->
+                                <% for (TypModel type : typ.getTypes()) {
+                                        if (type.getIdTyp() == user.getUser(cos).getTyp().getIdTyp()) { %>                                  
+                                <option value="<%out.print(type.getIdTyp()); %>" selected><%out.print(type.getNazwa()); %></option>
+                                <%      } else { %>
+                                <option value="<%out.print(type.getIdTyp()); %>"><%out.print(type.getNazwa()); %></option>
+                                <%      }
+                                    } %>
+                            </select>
+                        </jsp:useBean>
+                    </div>
+
                 </div>
-                <button type="submit" class="btn btn-primary">Edytuj</button>
+                <div class="row mt-4">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary float-right">Edytuj</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
