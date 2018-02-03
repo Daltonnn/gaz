@@ -40,9 +40,9 @@
                             <td><%out.print(userr.getImie()); %></td>
                             <td><%out.print(userr.getNazwisko()); %></td>                            
                             <td>
-                                <form method="post" action="ShowEdit" >
+                                <form method="post" action="ShowEdit" class="float-right" >
                                     <input class="d-none" value="<% out.print(userr.getIdUzytkownik()); %>" name="userID"/>
-                                    <button type="submit" class="btn btn-primary">Edytuj</button>                                
+                                    <button type="submit" class="btn btn-primary">Wyswietl</button>                                
                                 </form>
                             </td>
                         </tr>

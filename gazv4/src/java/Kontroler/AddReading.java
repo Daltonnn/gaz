@@ -46,20 +46,9 @@ public class AddReading extends HttpServlet {
             UzytkownikModel user = (UzytkownikModel) q.getSingleResult();
 
             
-            //suma = wartosc * user.getTaryfa().getCenaJed() + user.getTaryfa().getCenaLicz();
-//            suma.add(user.getTaryfa().getCenaJed());
-//            System.err.println(suma.toString());
-//            System.err.println(user.getTaryfa().getCenaJed().toString());
-//            suma.multiply(wartosc);            
-//            System.err.println(suma.toString());
-//            System.err.println(wartosc.toString());
-//            suma.add(user.getTaryfa().getCenaLicz());
-//            System.err.println(user.getTaryfa().getCenaLicz().toString());
-            
-            BigDecimal suma = user.getTaryfa().getCenaJed().multiply(wartosc).add(user.getTaryfa().getCenaLicz());
-            
-            System.err.println(suma.toString());
-            OdczytModel odczyt = new OdczytModel(data_od, data_do, suma);
+            BigDecimal suma = user.getTaryfa().getCenaJed().multiply(wartosc).add(user.getTaryfa().getCenaLicz());            
+           
+            OdczytModel odczyt = new OdczytModel(data_od, data_do, wartosc);
             LaczModel lacz = new LaczModel();
             lacz.setIdOdczyt(odczyt);
             lacz.setIdUzytkownik(user);
@@ -74,5 +63,4 @@ public class AddReading extends HttpServlet {
             resp.sendRedirect("error.jsp");
         }
     }
-
 }

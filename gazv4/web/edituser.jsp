@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="head.jsp" %>
 <jsp:useBean id="user" class="Kontroler.ShowEditUser" scope="request">
-    <%String cos = (String) session.getAttribute("userID"); %>
+    <% String cos = (String) session.getAttribute("userID"); %>
 
 
     <div class="row margin-nav mb-5">

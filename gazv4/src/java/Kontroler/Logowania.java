@@ -31,7 +31,7 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
 
     private static final String PERSISTENCE_UNIT_NAME = "gazv4PU";
 
-    public int checkUser(String email, String password) {
+    public UzytkownikModel checkUser(String email, String password) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
 
@@ -42,12 +42,12 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
             em.close();
 
             if (user.getHaslo().equals(password) && user.getPotwierdz() == true) {
-                return user.getIdUzytkownik();
+                return user;
             } else {
-                return 0;
+                return null;
             }
         } catch (Exception e) {
-            return 0;
+            return null;
         }
     }
 
@@ -63,9 +63,9 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
             for (int i = 0; i < users.size(); i++) {
                 UzytkownikModel user = (UzytkownikModel) users.get(i);
                 if (user.getTyp().getIdTyp() != 3) {
-                    usersArrayList.add(user);                     
+                    usersArrayList.add(user);
                 }
-            }            
+            }
             List<UzytkownikModel> usersList = (List) usersArrayList;
             em.close();
             return usersList;
@@ -76,9 +76,8 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
             return usersList;
         }
     }
-    
-    
-     public List<UzytkownikModel> getCustomer() {
+
+    public List<UzytkownikModel> getCustomer() {
         ArrayList<UzytkownikModel> usersArrayList = new ArrayList();
 
         try {
@@ -89,10 +88,10 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
             List users = (List) q.getResultList();
             for (int i = 0; i < users.size(); i++) {
                 UzytkownikModel user = (UzytkownikModel) users.get(i);
-                if (user.getTyp().getIdTyp() != 3 && user.getTyp().getIdTyp() != 2) {
-                    usersArrayList.add(user);                     
+                if (user.getTyp().getIdTyp() == 1) {
+                    usersArrayList.add(user);
                 }
-            }            
+            }
             List<UzytkownikModel> usersList = (List) usersArrayList;
             em.close();
             return usersList;
@@ -103,8 +102,8 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
             return usersList;
         }
     }
-     
-     public List<UzytkownikModel> getWorker() {
+
+    public List<UzytkownikModel> getWorker() {
         ArrayList<UzytkownikModel> usersArrayList = new ArrayList();
 
         try {
@@ -115,10 +114,10 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
             List users = (List) q.getResultList();
             for (int i = 0; i < users.size(); i++) {
                 UzytkownikModel user = (UzytkownikModel) users.get(i);
-                if (user.getTyp().getIdTyp() != 3 && user.getTyp().getIdTyp() != 1) {
-                    usersArrayList.add(user);                     
+                if (user.getTyp().getIdTyp() == 2 ) {
+                    usersArrayList.add(user);
                 }
-            }            
+            }
             List<UzytkownikModel> usersList = (List) usersArrayList;
             em.close();
             return usersList;
@@ -129,7 +128,6 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
             return usersList;
         }
     }
-    
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -142,9 +140,15 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
         Logowania login = new Logowania();
         HttpSession session = request.getSession();
 
-        if (login.checkUser(email, password) > 0) {
-            session.setAttribute("IdUzytkownik", login.checkUser(email, password));
-            response.sendRedirect("login.jsp");
+        if (login.checkUser(email, password) != null) {
+            UzytkownikModel user = login.checkUser(email, password);
+            session.setAttribute("IdUzytkownik", user.getIdUzytkownik());
+            session.setAttribute("IdTyp", user.getTyp().getIdTyp());
+            if (user.getTyp().getIdTyp() == 1) {
+                response.sendRedirect("userlogin.jsp");
+            } else {
+                response.sendRedirect("login.jsp");
+            }
         } else {
             response.sendRedirect("index.jsp");
         }
@@ -152,12 +156,8 @@ public class Logowania extends HttpServlet implements java.io.Serializable {
 
     public static void main(String[] args) {
         Logowania log = new Logowania();
-
-      
         for (UzytkownikModel user : log.getUsers()) {
             System.out.println(user.getImie());
-
         }
-
     }
 }

@@ -4,15 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/src/java/Kontroler/EditUser.java</file>
-            <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/src/java/Model/LaczModel.java</file>
-            <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/web/login.jsp</file>
-            <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/src/java/Model/OdczytModel.java</file>
+            <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/web/showuser.jsp</file>
+            <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/src/java/Kontroler/ShowEditUser.java</file>
+            <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/web/showusers.jsp</file>
             <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/web/edituser.jsp</file>
-            <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/web/addreading.jsp</file>
-            <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/web/addtariff.jsp</file>
             <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/src/java/Kontroler/Logowania.java</file>
             <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/src/java/Kontroler/AddReading.java</file>
-            <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/src/java/Kontroler/AddTariff.java</file>
+            <file>file:/C:/Users/Sebastian/Documents/NetBeansProjects/gazv5/gazv4/src/java/Kontroler/ShowUser.java</file>
         </group>
     </open-files>
 </project-private>

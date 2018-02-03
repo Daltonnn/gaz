@@ -49,7 +49,7 @@ public class ShowEditUser extends HttpServlet {
         
         session.setAttribute("userID", id);       
         
-        response.sendRedirect("edituser.jsp");   
+        response.sendRedirect("showuser.jsp");   
     }
     
     public static void main(String[] args) {
