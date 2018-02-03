@@ -57,9 +57,10 @@
                     <div class="form-group col-md-2">
                         <label for="inputZip">Potwierdzenie</label>
 
-                        <input type="checkbox" value="true"  name=""potwierdz <% if (user.getUser(cos).getPotwierdz() == Boolean.TRUE) {
+                        <input type="checkbox" value="true"  name="potwierdz" <% if (user.getUser(cos).getPotwierdz() == Boolean.TRUE) {
                                 out.print("checked");
                             }%> >
+                        
                         <jsp:useBean id="taryfa" class="Kontroler.AddTariff" scope="request">
                             <select name="taryfa" id="inputState" class="form-control">                                
                                 <option value="null" selected>Wybierz</option>

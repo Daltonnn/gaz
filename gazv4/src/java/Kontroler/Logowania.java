@@ -6,7 +6,6 @@
 package Kontroler;
 
 import Model.UzytkownikModel;
-import com.sun.org.apache.xerces.internal.xs.LSInputList;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,10 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Sebastian
- */
 @WebServlet("/Logowania")
 public class Logowania extends HttpServlet implements java.io.Serializable {
 
