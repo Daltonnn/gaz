@@ -21,30 +21,29 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/DeleteReading")
 public class DeleteReading extends HttpServlet {
-    
+
     private static final String PERSISTENCE_UNIT_NAME = "gazv4PU";
-    
+
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html");
-        
+
         int odczytId = Integer.parseInt(req.getParameter("odczytID"));
         String id = req.getParameter("userID");
         System.err.println("odczyt ID" + odczytId);
-        
+
         try {
             EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
             EntityManager em = factory.createEntityManager();
-            
-            LaczModel lacz = (LaczModel) em.createQuery("SELECT l FROM LaczModel l WHERE l.IdOdczyt =" + odczytId + "").getSingleResult();
-            OdczytModel odczyt = em.find(OdczytModel.class, odczytId);
-            
+
+            LaczModel lacz = em.find(LaczModel.class, odczytId);
+            OdczytModel odczyt = em.find(OdczytModel.class, lacz.getIdOdczyt().getIdOdczyt());
+
             em.getTransaction().begin();
 
-            // em.remove(odczyt.getLaczModelCollection().remove(lacz));
-            em.refresh(lacz);
+            em.remove(lacz);
             em.remove(odczyt);
-            
+
             em.getTransaction().commit();
             em.close();
             HttpSession session = req.getSession();

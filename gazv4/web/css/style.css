@@ -106,4 +106,8 @@ and open the template in the editor.
     max-height: 350px;
   }
   
+  .sideh{
+      min-height: 100vh;
+  }
+  
  

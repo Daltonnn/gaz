@@ -90,7 +90,7 @@
                                     <% double cos = odczyt.getIdOdczyt().getWartosc().multiply(user.getUser(idString).getTaryfa().getCenaJed()).add(user.getUser(idString).getTaryfa().getCenaLicz()).doubleValue(); %>
                                     <td><% out.print(String.format("%.2f", cos)); %></td>
                                     <td><form method="post" action="DeleteReading" class="float-right" >
-                                            <input class="d-none" value="<% out.print(odczyt.getIdOdczyt().getIdOdczyt()); %>" name="odczytID"/>
+                                            <input class="d-none" value="<% out.print(odczyt.getId()); %>" name="odczytID"/>
                                             <input class="d-none" value="<% out.print(idString); %>" name="userID"/>
                                             <button type="submit" class="btn btn-primary float-right">Usuń</button>                                
                                         </form></td>

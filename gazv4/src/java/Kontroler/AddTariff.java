@@ -49,7 +49,7 @@ public class AddTariff extends HttpServlet {
             resp.sendRedirect("potwierdzenie.jsp");
         } catch (Exception e) {
             
-            
+            resp.sendError(0, e.getMessage());
         }
     }
     
@@ -65,9 +65,8 @@ public class AddTariff extends HttpServlet {
             
             em.close();
             return taryfaList;
-        } catch (Exception e) {
-          List cos = (List) taryfaarylist;
-          return cos;
+        } catch (Exception e) {          
+          return null;
         }
     }
 }

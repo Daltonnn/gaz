@@ -29,20 +29,17 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link text-white" href="#">Kontakt</a>
-                    </li>
+                <ul class="navbar-nav mr-auto">                    
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Oferta dla domu</a>
+                        <a class="nav-link text-white" href="ofertadom.jsp">Oferta dla domu</a>
                     </li>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Oferta dla firmy</a>
+                        <a class="nav-link text-white" href="ofertafirma.jsp">Oferta dla firmy</a>
                     </li>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Onas</a>
+                        <a class="nav-link text-white" href="onas.jsp">O nas</a>
                     </li>
                 </ul> 
                 <% if((session.getAttribute("IdUzytkownik") == null) || (session.getAttribute("IdUzytkownik") == "0")){ %>
@@ -59,7 +56,7 @@
     </nav>
 
 
-    <div class="container">
+    <div class="container sideh">
         <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">

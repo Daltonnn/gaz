@@ -26,10 +26,11 @@ public class ShowEditUser extends HttpServlet {
     public UzytkownikModel getUser(String userId) {
         int id = Integer.parseInt(userId);
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        EntityManager em = factory.createEntityManager();
+        EntityManager em = factory.createEntityManager();        
 
         Query q = em.createQuery("SELECT u FROM UzytkownikModel u WHERE u.idUzytkownik = '" + id + "' ORDER BY u.nazwisko ASC");
         UzytkownikModel user = (UzytkownikModel) q.getSingleResult();
+        em.refresh(user);
         return user;
     }
 
