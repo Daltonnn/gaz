@@ -8,7 +8,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="head.jsp" %>
 <jsp:useBean id="user" class="Kontroler.ShowEditUser" scope="request">
-    <% String cos = (String) session.getAttribute("userID"); %>
+    <% String cos = (String) session.getAttribute("userID");
+        String idTyp = session.getAttribute("IdTyp").toString();
+    %>
     <div class="row margin-nav mb-5 ">
         <div class="col">
             <h3>Edytuj użtkownika</h3>
@@ -58,15 +60,16 @@
                         <label for="inputZip">Kod pocztowy</label>
                         <input type="text"name="kodPoczt" class="form-control" id="inputZip" placeholder="00-000" pattern="[0-9][0-9]-[0-9][0-9][0-9]" value="<% out.print(user.getUser(cos).getKodPoczt());  %>" required>
                     </div>
-                    <div class="form-group col-md-2">
+                </div>
+                <% if (idTyp.equals("2") || idTyp.equals("3")) { %>
+                <div class="row">
+                    <div class="form-group col-md">
                         <label for="inputZip">Potwierdzenie</label>
 
                         <input type="checkbox" value="true"  name="potwierdz" <% if (user.getUser(cos).getPotwierdz() == Boolean.TRUE) {
                                 out.print("checked");
                             }%> >                       
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-sm">
                         <jsp:useBean id="taryfa" class="Kontroler.AddTariff" scope="request">
                             <select name="taryfa" id="inputState" class="form-control">                                
@@ -95,8 +98,8 @@
                             </select>
                         </jsp:useBean>
                     </div>
-
                 </div>
+                    <% } %>
                 <div class="row mt-4">
                     <div class="col">
                         <button type="submit" class="btn btn-primary float-right">Edytuj</button>

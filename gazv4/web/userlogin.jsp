@@ -21,6 +21,12 @@
                             out.print("Brak");
                         }%></h3>
         </div>
+        <div class="col-md">
+            <form method="post" action="ShowEdit" class="float-right" >
+                                    <input class="d-none" value="<% out.print(session.getAttribute("IdUzytkownik").toString()); %>" name="userID"/>
+                                    <button type="submit" class="btn btn-primary">Profil</button>                                
+                                </form>
+        </div>
     </div>   
         
         

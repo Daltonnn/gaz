@@ -9,7 +9,9 @@
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="head.jsp" %>
-<% String idString = session.getAttribute("userID").toString(); %>
+<% String idString = session.getAttribute("userID").toString();
+    String idTyp = session.getAttribute("IdTyp").toString();
+%>
 <jsp:useBean id="user" class="Kontroler.ShowEditUser" scope="request">
     <div class="row margin-nav mb-5 ">
         <div class="col">
@@ -68,7 +70,7 @@
             </div>
 
 
-            <% if (!user.getUser(idString).getLaczModelCollection().isEmpty() && user.getUser(idString).getTaryfa() != null) {%>
+            <% if (!user.getUser(idString).getLaczModelCollection().isEmpty() && user.getUser(idString).getTaryfa() != null && (idTyp.equals("2") || idTyp.equals("3"))) {%>
             <div class="row mt-4">
                 <div class="col">
                     <div class="table-responsive-sm">
@@ -93,7 +95,7 @@
                                     <td><%out.print(odczyt.getIdOdczyt().getDataOd().getDate() + "-" + (odczyt.getIdOdczyt().getDataOd().getMonth() + 1) + "-" + (odczyt.getIdOdczyt().getDataOd().getYear() + 1900)); %></td>
                                     <td><%out.print(odczyt.getIdOdczyt().getDataDo().getDate() + "-" + (odczyt.getIdOdczyt().getDataDo().getMonth() + 1) + "-" + (odczyt.getIdOdczyt().getDataDo().getYear() + 1900)); %></td>                            
                                     <td><%out.print(odczyt.getIdOdczyt().getWartosc().toString()); %></td>
-                                    <% BigDecimal cos = odczyt.getIdOdczyt().getWartosc().multiply(user.getUser(idString).getTaryfa().getCenaJed()); 
+                                    <% BigDecimal cos = odczyt.getIdOdczyt().getWartosc().multiply(user.getUser(idString).getTaryfa().getCenaJed());
                                         double cos2 = cos.add(user.getUser(idString).getTaryfa().getCenaLicz()).doubleValue();
                                     %>
                                     <td><% out.print(String.format("%.2f", cos2)); %></td>
@@ -104,7 +106,7 @@
                                             <button type="submit" class="btn btn-primary float-right">Edytuj</button>                                
                                         </form>
                                     </td>
-                                    
+
                                     <td>
                                         <form method="post" action="DeleteReading" class="float-right" >
                                             <input class="d-none" value="<% out.print(odczyt.getId()); %>" name="odczytID"/>
@@ -114,7 +116,7 @@
                                     </td>
                                 </tr>
                                 <% i++;
-                                }%>
+                                    }%>
                             </tbody>
                         </table>
                     </div>

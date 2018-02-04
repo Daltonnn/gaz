@@ -30,11 +30,12 @@ public class EditUser extends HttpServlet {
         String ulica = req.getParameter("ulica");
         String nrBud = req.getParameter("nrBud");
         String miasto = req.getParameter("miasto");
-        String kodPoczt = req.getParameter("kodPoczt");       
+        String kodPoczt = req.getParameter("kodPoczt");
         Boolean potwierdz = Boolean.parseBoolean(req.getParameter("potwierdz"));
-        
+
         String taryfaid = req.getParameter("taryfa");
-        int typid = Integer.parseInt(req.getParameter("typ"));
+
+        String type = req.getParameter("typ");
 
         try {
             EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -49,24 +50,28 @@ public class EditUser extends HttpServlet {
             user.setNrMiesz(nrBud);
             user.setMiasto(miasto);
             user.setKodPoczt(kodPoczt);
-            
-            if(potwierdz != null)
-            user.setPotwierdz(potwierdz);
+
+            if (potwierdz != null) {
+                user.setPotwierdz(potwierdz);
+            }
 
             if (taryfaid != null) {
                 int idTaryfa = Integer.parseInt(taryfaid);
                 TaryfaModel taryfa = em.find(TaryfaModel.class, idTaryfa);
                 user.setTaryfa(taryfa);
-            } 
-            
-            TypModel typ = em.find(TypModel.class, typid);
-            user.setTyp(typ);
-            
+            }
+
+            if (type!= null) {
+                int typid = Integer.parseInt(type);
+                TypModel typ = em.find(TypModel.class, typid);
+                user.setTyp(typ);
+            }
+
             em.persist(user);
 
             em.getTransaction().commit();
             em.close();
-            
+
             resp.sendRedirect("showuser.jsp");
         } catch (Exception e) {
             resp.sendRedirect("error.jsp");
