@@ -9,8 +9,12 @@
 <%@include file="head.jsp" %>
 <jsp:useBean id="taryfa" class="Kontroler.ShowEditTariff" scope="request">
     <%String cos = (String) session.getAttribute("tariffID"); %>
-
-    <div class="row margin-nav ">
+    <div class="row margin-nav mb-5 ">
+        <div class="col">
+            <h3>Taryfa</h3>
+        </div>
+    </div>
+    <div class="row ">
         <div class="col-sm">
             <p>Nazwa taryfy: <% out.print(taryfa.getTariff(cos).getNazwa());  %>   </p>     
         </div>

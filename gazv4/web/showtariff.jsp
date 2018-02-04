@@ -7,8 +7,12 @@
 %>
 <%@include file="head.jsp" %>
 
-
-<div class="row margin-nav mb-5">
+<div class="row margin-nav mb-5 ">
+        <div class="col">
+            <h3>Taryfa</h3>
+        </div>
+    </div>
+<div class="row mb-5">
     <div class="col-sm">
         <a href="addtariff.jsp" class="btn btn-primary">Dodaj</a>
     </div>

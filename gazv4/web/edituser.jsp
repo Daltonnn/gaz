@@ -9,9 +9,12 @@
 <%@include file="head.jsp" %>
 <jsp:useBean id="user" class="Kontroler.ShowEditUser" scope="request">
     <% String cos = (String) session.getAttribute("userID"); %>
-
-
-    <div class="row margin-nav mb-5">
+    <div class="row margin-nav mb-5 ">
+        <div class="col">
+            <h3>Edytuj użtkownika</h3>
+        </div>
+    </div>
+    <div class="row mb-5">
         <div class="col-sm">
             <form method="post" action="EditUser" >
 

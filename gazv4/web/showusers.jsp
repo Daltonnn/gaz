@@ -16,8 +16,12 @@
     } else {
 %>
 <%@include file="head.jsp" %>
-
-<div class="row margin-nav mb-5">
+<div class="row margin-nav mb-5 ">
+        <div class="col">
+            <h3>Użytkownicy</h3>
+        </div>
+    </div>
+<div class="row mb-5">
     <div class="col-sm">
         <jsp:useBean id="user" class="Kontroler.Logowania" scope="request">
             <div class="table-responsive-sm">

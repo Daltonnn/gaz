@@ -11,7 +11,12 @@
 <%@include file="head.jsp" %>
 <% String idString = session.getAttribute("userID").toString(); %>
 <jsp:useBean id="user" class="Kontroler.ShowEditUser" scope="request">
-    <div class="row margin-nav mb-5">
+    <div class="row margin-nav mb-5 ">
+        <div class="col">
+            <h3>Użytkownik</h3>
+        </div>
+    </div>
+    <div class="row mb-5">
         <div class="col-sm">
             <div class="row">
                 <div class="col-sm">
@@ -76,6 +81,7 @@
                                     <th scope="col">Ilosc</th>
                                     <th scope="col">Wartosc</th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,13 +93,25 @@
                                     <td><%out.print(odczyt.getIdOdczyt().getDataOd().getDate() + "-" + (odczyt.getIdOdczyt().getDataOd().getMonth() + 1) + "-" + (odczyt.getIdOdczyt().getDataOd().getYear() + 1900)); %></td>
                                     <td><%out.print(odczyt.getIdOdczyt().getDataDo().getDate() + "-" + (odczyt.getIdOdczyt().getDataDo().getMonth() + 1) + "-" + (odczyt.getIdOdczyt().getDataDo().getYear() + 1900)); %></td>                            
                                     <td><%out.print(odczyt.getIdOdczyt().getWartosc().toString()); %></td>
-                                    <% double cos = odczyt.getIdOdczyt().getWartosc().multiply(user.getUser(idString).getTaryfa().getCenaJed()).add(user.getUser(idString).getTaryfa().getCenaLicz()).doubleValue(); %>
-                                    <td><% out.print(String.format("%.2f", cos)); %></td>
-                                    <td><form method="post" action="DeleteReading" class="float-right" >
+                                    <% BigDecimal cos = odczyt.getIdOdczyt().getWartosc().multiply(user.getUser(idString).getTaryfa().getCenaJed()); 
+                                        double cos2 = cos.add(user.getUser(idString).getTaryfa().getCenaLicz()).doubleValue();
+                                    %>
+                                    <td><% out.print(String.format("%.2f", cos2)); %></td>
+                                    <td>
+                                        <form method="post" action="ShowEditReading" class="float-right" >
+                                            <input class="d-none" value="<% out.print(odczyt.getIdOdczyt().getIdOdczyt()); %>" name="odczytIDd"/>
+                                            <input class="d-none" value="<% out.print(idString); %>" name="userID"/>
+                                            <button type="submit" class="btn btn-primary float-right">Edytuj</button>                                
+                                        </form>
+                                    </td>
+                                    
+                                    <td>
+                                        <form method="post" action="DeleteReading" class="float-right" >
                                             <input class="d-none" value="<% out.print(odczyt.getId()); %>" name="odczytID"/>
                                             <input class="d-none" value="<% out.print(idString); %>" name="userID"/>
                                             <button type="submit" class="btn btn-primary float-right">Usuń</button>                                
-                                        </form></td>
+                                        </form>
+                                    </td>
                                 </tr>
                                 <% i++;
                                 }%>

@@ -16,7 +16,9 @@
 <<div class="row margin-nav">
     <div class="col-sm"> 
         <a href="showusers.jsp">showuser</a>
-        <br/>      
+        <br/>     
+        <a href="showtypes.jsp">showtypes</a>
+        <br/>    
         
         <a href="showtariff.jsp">showtariff</a>
          <br />
