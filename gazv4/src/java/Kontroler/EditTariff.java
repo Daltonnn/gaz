@@ -48,7 +48,7 @@ public class EditTariff extends HttpServlet {
             em.close();
             resp.sendRedirect("showtariff.jsp");
         } catch (Exception e) {
-
+             resp.sendError(0, e.getMessage());
         }
     }
 }

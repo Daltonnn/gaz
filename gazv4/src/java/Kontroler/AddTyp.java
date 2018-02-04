@@ -16,10 +16,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@WebServlet("/AddTyp")
 public class AddTyp extends HttpServlet {
 
     private static final String PERSISTENCE_UNIT_NAME = "gazv4PU";

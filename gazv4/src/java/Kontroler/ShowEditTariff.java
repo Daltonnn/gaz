@@ -28,7 +28,8 @@ public class ShowEditTariff extends HttpServlet {
         EntityManager em = factory.createEntityManager();
         
         Query q = em.createQuery("SELECT t FROM TaryfaModel t WHERE t.idTaryfa = '"+id+"'");
-        TaryfaModel taryfa = (TaryfaModel) q.getSingleResult();        
+        TaryfaModel taryfa = (TaryfaModel) q.getSingleResult();  
+        em.close();
         return taryfa;
     }
      
